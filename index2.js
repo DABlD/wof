@@ -34,8 +34,8 @@ names.forEach(name => {
   sectors.push({color: '#' + Math.random().toString(16).slice(-6), label: name})
 })
 
-$('canvas').width = 700;
-$('canvas').height = 700;
+document.querySelector('#wheel').width = 700;
+document.querySelector('#wheel').height = 700;
 
 const rand = (m, M) => Math.random() * (M - m) + m
 const tot = sectors.length
