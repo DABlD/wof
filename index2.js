@@ -34,12 +34,15 @@ names.forEach(name => {
   sectors.push({color: '#' + Math.random().toString(16).slice(-6), label: name})
 })
 
+$('canvas').width = 700;
+$('canvas').height = 700;
+
 const rand = (m, M) => Math.random() * (M - m) + m
 const tot = sectors.length
 const spinEl = document.querySelector('#spin')
 const ctx = document.querySelector('#wheel').getContext('2d')
 const dia = ctx.canvas.width
-const rad = dia / 3
+const rad = dia / 2
 const PI = Math.PI
 const TAU = 2 * PI
 const arc = TAU / sectors.length
