@@ -60,7 +60,7 @@ function drawSector(sector, i) {
   ctx.rotate(ang + arc / 2)
   ctx.textAlign = 'right'
   ctx.fillStyle = '#fff'
-  ctx.font = 'bold 30px sans-serif'
+  ctx.font = 'bold 25px sans-serif'
   ctx.fillText(sector.label, rad - 10, 10)
   //
   ctx.restore()
