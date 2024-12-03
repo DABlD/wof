@@ -21,7 +21,7 @@ body {
 }
 
 #spin {
-  font: 0.8em/0 sans-serif;
+  font: 1.5em/0 sans-serif;
   user-select: none;
   cursor: pointer;
   display: flex;
