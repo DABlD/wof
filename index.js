@@ -108,7 +108,8 @@ function frame() {
     angVel = 0 // Bring to stop
     taya1.splice(taya1.indexOf(sectors[getIndex()].label), 1)
     Swal.fire({
-      title: sectors[getIndex()].label
+      title: sectors[getIndex()].label,
+      timer: 5000
     })
   }
   else if(angVel < 0.002){
@@ -141,11 +142,6 @@ init()
 document.addEventListener('keydown', function(e) {
   console.log(e.keyCode);
   if([9, 33, 34].includes(e.keyCode)){
-    if(Swal.isVisible()){
-      Swal.close();
-    }
-    else{
-      document.getElementById("spin").click();
-    }
+    document.getElementById("spin").click();
   }
 });

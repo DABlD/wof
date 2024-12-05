@@ -90,7 +90,7 @@ const taya1 = [
 function frame() {
   if (!angVel) return
   angVel *= friction // Decrement velocity by friction
-  // console.log(angVel, sectors[getIndex()].label);
+  console.log(angVel, sectors[getIndex()].label);
 
   if (angVel < 0.042 && taya1.length && !taya1.includes(sectors[getIndex()].label)){
     angVel += 0.0007 // SPEED UP
@@ -108,14 +108,15 @@ function frame() {
     taya1.splice(taya1.indexOf(sectors[getIndex()].label), 1)
 
     Swal.fire({
-      title: sectors[getIndex()].label
+      title: sectors[getIndex()].label,
+      timer: 5000
     })
   }
   else if(angVel < 0.002){
     angVel = 0;
   }
 
-  // console.log(taya1);
+  console.log(taya1);
 
   ang += angVel // Update angle
   ang %= TAU // Normalize angle
@@ -141,12 +142,6 @@ init()
 document.addEventListener('keydown', function(e) {
   console.log(e.keyCode);
   if([9, 33, 34].includes(e.keyCode)){
-    console.log(Swal.isVisible());
-    if(Swal.isVisible()){
-      Swal.close();
-    }
-    else{
-      document.getElementById("spin").click();
-    }
+    document.getElementById("spin").click();
   }
 });
