@@ -90,9 +90,9 @@ const taya1 = [
 function frame() {
   if (!angVel) return
   angVel *= friction // Decrement velocity by friction
-  console.log(angVel, sectors[getIndex()].label);
+  // console.log(angVel, sectors[getIndex()].label);
 
-  if (angVel < 0.042 && !taya1.includes(sectors[getIndex()].label)){
+  if (angVel < 0.042 && taya1.length && !taya1.includes(sectors[getIndex()].label)){
     angVel += 0.0007 // SPEED UP
     console.log("SPED UPPPPPPPPPPPPPPPPPPPPPPPPPPPP");
     console.log("SPED UPPPPPPPPPPPPPPPPPPPPPPPPPPPP");
@@ -115,7 +115,7 @@ function frame() {
     angVel = 0;
   }
 
-  console.log(taya1);
+  // console.log(taya1);
 
   ang += angVel // Update angle
   ang %= TAU // Normalize angle
@@ -141,6 +141,7 @@ init()
 document.addEventListener('keydown', function(e) {
   console.log(e.keyCode);
   if([9, 33, 34].includes(e.keyCode)){
+    console.log(Swal.isVisible());
     if(Swal.isVisible()){
       Swal.close();
     }
