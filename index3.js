@@ -143,6 +143,6 @@ init()
 document.addEventListener('keydown', function(e) {
   console.log(e.keyCode);
   if([9, 33, 44].includes(e.keyCode)){
-    rotate();
+    document.getElementById("spin").click();
   }
 });
