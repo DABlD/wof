@@ -143,6 +143,11 @@ init()
 document.addEventListener('keydown', function(e) {
   console.log(e.keyCode);
   if([9, 33, 34].includes(e.keyCode)){
-    document.getElementById("spin").click();
+    if(Swal.isVisible()){
+      Swal.close();
+    }
+    else{
+      document.getElementById("spin").click();
+    }
   }
 });
