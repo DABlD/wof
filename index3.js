@@ -141,6 +141,7 @@ function init() {
 init()
 
 document.addEventListener('keydown', function(e) {
+  console.log(e.keycode);
   if([9, 33, 44].includes(e.keycode)){
     rotate();
   }
