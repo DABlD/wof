@@ -1,28 +1,25 @@
 const sectors = []
 
 const names = [
-  "Mr. Ryosuke Kita ",
-  "Mr. Tsutomu Fujii",
+  "Mr. Ijaz Ahmed Bin Abdul Hamid",
+  "Mr. Kazuma Yorozu",
+  "Mr. Ryosuke Kita",
   "Mr. Hiroshi Yasuo",
-  "Mr. Wilmar Olayvar",
-  "Mr. Kenichi Kouno",
-  "Mr. Junard Espulgar",
-  "Mr. Yoshiyuki Tsukai",
-  "Mr. Yuya Utsumi",
-  "Capt. Danilo Sta. Ana",
-  "Mr. Kim Bojoong",
-  "Mr. Lee, Jeongho",
-  "Mr. Seo, Kwang-Taek",
-  "Mr. Lee, Sanghun",
-  "Mr. Bang, Sangbin",
-  "Mr. Seo, Jeongho",
-  "Mr. Sim Jae Sin",
+  "Mr. Wilmar E. Olayvar",
+  "Capt. Takayuki Mibu",
+  "Mr. Junard A. Espulgar",
+  // "Mr. Rosano D. Subang",
+  // "Mr. Dongchul Jung",
+  "Mr. Minho Kim",
+  // "Mr. Kwangtaek Seo",
+  "Mr. Nae-Eun Jin",
+  "Mr. Eejung Kim",
+  "Mr. Jeyeong Jeong",
   "CE Romano A. Mariano",
-  "Mr. Shim Woohyun",
   "Mr. Ko Kyoung Taek",
-  "Mr. Gwak Gyeonghwan",
-  "Capt. Hernan Castillo",
-  "CE Jose Melchor Del Pilar"
+  "Mr. Gyak Gyeonghwan",
+  "Mr. Kang Lee Seong",
+  "Capt. Manfred August Ramos"
 ]
 
 names.forEach(name => {
@@ -75,24 +72,29 @@ function rotate() {
 }
 
 const taya1 = [
-  "Mr. Lee, Jeongho",
-  "Mr. Seo, Kwang-Taek",
-  "Mr. Yuya Utsumi",
-  "Mr. Ko Kyoung Taek",
-  "Mr. Yoshiyuki Tsukai"
+  "Mr. Ryosuke Kita",
+  "Capt. Takayuki Mibu",
+  "Mr. Minho Kim",
+  "Mr. Eejung Kim",
+  "Mr. Kang Lee Seong"
+]
+
+const taya2 = [
+  "Mr. Nae-Eun Jin",
 ]
 
 const exclude = [
   "CE Romano A. Mariano",
-  "Capt. Hernan Castillo",
-  "Mr. Sim Jae Sin",
-  "Mr. Seo, Jeongho"
+  // "Mr. Kwangtaek Seo",
+  "Mr. Ijaz Ahmed Bin Abdul Hamid",
+  "Mr. Hiroshi Yasuo",
+  "Mr. Kazuma Yorozu"
 ]
 
 function frame() {
   if (!angVel) return
   angVel *= friction // Decrement velocity by friction
-  console.log(angVel, sectors[getIndex()].label);
+  // console.log(angVel, sectors[getIndex()].label);
   if (angVel < 0.042 && exclude.includes(sectors[getIndex()].label)){
     angVel += 0.001 // SPEED UP
     console.log("SPED UPPPPPPPPPPPPPPPPPPPPPPPPPPPP");
@@ -106,22 +108,50 @@ function frame() {
   
   if (angVel < 0.04 && taya1.includes(sectors[getIndex()].label)){
     angVel = 0 // Bring to stop
-    taya1.splice(taya1.indexOf(sectors[getIndex()].label), 1)
+    taya1.splice(taya1.indexOf(sectors[getIndex()].label), 1);
     Swal.fire({
       title: sectors[getIndex()].label,
       timer: 5000
     })
   }
+  else if(angVel < 0.04 && (taya1.length == 0 && taya2.length > 0) && taya2.includes(sectors[getIndex()].label)){
+    taya2.splice(taya2.indexOf(sectors[getIndex()].label), 1);
+    Swal.fire({
+      title: sectors[getIndex()].label,
+      timer: 5000
+    })
+    angVel = 0;
+  }
   else if(angVel < 0.002){
     angVel = 0;
   }
 
-  console.log(taya1);
+  // console.log(taya1);
 
   ang += angVel // Update angle
   ang %= TAU // Normalize angle
   rotate()
 }
+
+// function frame2() {
+//   if (!angVel) return
+//   angVel *= friction // Decrement velocity by friction
+//   // console.log(angVel, sectors[getIndex()].label);
+//   if (angVel < 0.042 && exclude.includes(sectors[getIndex()].label)){
+//     angVel += 0.001 // SPEED UP
+//     console.log("SPED UPPPPPPPPPPPPPPPPPPPPPPPPPPPP");
+//   }
+  
+//   if(angVel < 0.002){
+//     angVel = 0;
+//   }
+
+//   // console.log(taya1);
+
+//   ang += angVel // Update angle
+//   ang %= TAU // Normalize angle
+//   rotate()
+// }
 
 function engine() {
   frame()
