@@ -1,26 +1,25 @@
 const sectors = []
 
 const names = [
-  "Mr. Ijaz Ahmed Bin Abdul Hamid",
-  "Mr. Kazuma Yorozu",
-  "Mr. Ryosuke Kita",
-  "Mr. Hiroshi Yasuo",
-  "Mr. Wilmar E. Olayvar",
-  "Capt. Takayuki Mibu",
-  "Mr. Junard A. Espulgar",
-  // "Mr. Rosano D. Subang",
-  // "Mr. Dongchul Jung",
-  "Mr. Minho Kim",
-  // "Mr. Kwangtaek Seo",
-  "Mr. Nae-Eun Jin",
-  "Mr. Eejung Kim",
-  "Mr. Jeyeong Jeong",
-  "CE Romano A. Mariano",
-  "Mr. Ko Kyoung Taek",
-  "Mr. Gyak Gyeonghwan",
-  "Mr. Kang Lee Seong",
-  "Capt. Manfred August Ramos"
-]
+  "David",
+  "Neil",
+  "Bianca",
+  "Gladys",
+  "Laura",
+  "Monique",
+  "Lhea",
+  "Dha",
+  "CE Joey",
+  "Yvonne",
+  "Mr. Ko",
+  "Marjely",
+  "Happy",
+  "Faith",
+  "Espie",
+  "Philip",
+  "Michael",
+  "Prince"
+];
 
 names.forEach(name => {
   sectors.push({color: '#' + Math.random().toString(16).slice(-6), label: name})
@@ -71,25 +70,20 @@ function rotate() {
   spinEl.style.background = sector.color
 }
 
-const taya1 = [
-  "Mr. Ryosuke Kita",
-  "Capt. Takayuki Mibu",
-  "Mr. Minho Kim",
-  "Mr. Eejung Kim",
-  "Mr. Kang Lee Seong"
-]
+// const taya1 = [
+//   "Mr. Ryosuke Kita",
+//   "Capt. Takayuki Mibu",
+//   "Mr. Minho Kim",
+//   "Mr. Eejung Kim",
+//   "Mr. Kang Lee Seong"
+// ]
 
-const taya2 = [
-  "Mr. Nae-Eun Jin",
-]
+// const taya2 = [
+//   "Mr. Nae-Eun Jin",
+// ]
 
 const exclude = [
-  "CE Romano A. Mariano",
-  // "Mr. Kwangtaek Seo",
-  "Mr. Ijaz Ahmed Bin Abdul Hamid",
-  "Mr. Hiroshi Yasuo",
-  "Mr. Kazuma Yorozu"
-]
+];
 
 function frame() {
   if (!angVel) return
@@ -106,27 +100,29 @@ function frame() {
     console.log("SPED UPPPPPPPPPPPPPPPPPPPPPPPPPPPP");
   }
   
-  if (angVel < 0.04 && taya1.includes(sectors[getIndex()].label)){
-    angVel = 0 // Bring to stop
-    taya1.splice(taya1.indexOf(sectors[getIndex()].label), 1);
-    Swal.fire({
-      title: sectors[getIndex()].label,
-      timer: 5000
-    })
-  }
-  else if(angVel < 0.04 && (taya1.length == 0 && taya2.length > 0) && taya2.includes(sectors[getIndex()].label)){
-    taya2.splice(taya2.indexOf(sectors[getIndex()].label), 1);
+  // if (angVel < 0.04 && taya1.includes(sectors[getIndex()].label)){
+  //   angVel = 0 // Bring to stop
+  //   taya1.splice(taya1.indexOf(sectors[getIndex()].label), 1);
+  //   Swal.fire({
+  //     title: sectors[getIndex()].label,
+  //     timer: 5000
+  //   })
+  // }
+  if(angVel < 0.04){
+    // taya2.splice(taya2.indexOf(sectors[getIndex()].label), 1);
+    exclude.push(sectors[getIndex()].label);
     Swal.fire({
       title: sectors[getIndex()].label,
       timer: 5000
     })
     angVel = 0;
   }
-  else if(angVel < 0.002){
-    angVel = 0;
-  }
+  // else if(angVel < 0.002){
+  // if(angVel < 0.002){
+  //   angVel = 0;
+  // }
 
-  // console.log(taya1);
+  console.log(exclude);
 
   ang += angVel // Update angle
   ang %= TAU // Normalize angle
